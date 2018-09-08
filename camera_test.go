@@ -8,7 +8,9 @@ import (
 )
 
 func TestCameraCapture(t *testing.T) {
-	os.Mkdir("tmp", os.ModePerm)
+	if err := os.Mkdir("tmp", os.ModePerm); !os.IsExist(err) {
+		t.Fatalf("making tmp dir failed: %s", err)
+	}
 
 	testFile := fmt.Sprintf("./tmp/testfile_%d.txt", time.Now().Unix())
 	defer os.Remove(testFile)
