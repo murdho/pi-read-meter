@@ -11,10 +11,11 @@ const (
 )
 
 var testConfig = Config{
-	CaptureCommandPattern: "raspistill -vf -hf -o %s",
-	ImageDir:              "~/pi-read-meter/images",
-	FilenamePattern:       "image_%s.jpg",
-	DropboxToken:          "fcaea99c-67fa-4a56-9d08-6e133fd05759",
+	CaptureCommand:     "raspistill",
+	CaptureCommandArgs: "-vf -hf -o %s",
+	ImageDir:           "~/pi-read-meter/images",
+	FilenamePattern:    "image_%s.jpg",
+	DropboxToken:       "fcaea99c-67fa-4a56-9d08-6e133fd05759",
 }
 
 var filenameRegex = regexp.MustCompile(`image_\d{4}-(\d{2}-){4}\d{2}.jpg`)
@@ -39,8 +40,9 @@ type testShellExec struct {
 	executedCommands []string
 }
 
-func (t *testShellExec) Exec(commandAndArgs string) error {
-	t.executedCommands = append(t.executedCommands, commandAndArgs)
+func (t *testShellExec) Exec(command string, args ...string) error {
+	cmdAndArgs := append([]string{command}, args...)
+	t.executedCommands = append(t.executedCommands, strings.Join(cmdAndArgs, " "))
 	return nil
 }
 
