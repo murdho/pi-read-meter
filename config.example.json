@@ -1,0 +1,6 @@
+{
+  "capture_command_pattern": "raspistill -vf -hf -o %s",
+  "image_dir": "~/pi-read-meter/images",
+  "filename_pattern": "image_%s.jpg",
+  "dropbox_token": "fcaea99c-67fa-4a56-9d08-6e133fd05759"
+}
