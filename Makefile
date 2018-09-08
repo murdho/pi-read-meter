@@ -1,8 +1,8 @@
 test:
-	@go test .
+	@go test -v
 
 build:
 	@go build
 
 run: build
-	@./pi-read-meter
+	@./pi-read-meter config.dev.json

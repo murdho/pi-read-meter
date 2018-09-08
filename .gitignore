@@ -11,3 +11,6 @@ pi-read-meter
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+# Custom stuff
+config.dev.json
