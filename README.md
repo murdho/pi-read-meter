@@ -35,11 +35,14 @@ Here I'll go over the steps to set something similar up to yourself. These are n
 11. If all goes well, you should have the image in your Dropbox's app folder (`/Apps/APP_NAME` in Dropbox)
 12. To make it run automatically, configure cron using `crontab -e` command. In there,
     1.  Specify cron shell, I used bash like this: `SHELL=/bin/bash`
-    2.  Make it run every night: `0 0 * * * /home/pi/pi-read-meter-armv6 config.json >> /home/pi/pi-read-meter.log 2>&1`
-        1.  Assuming binary location is `/home/pi/pi-read-meter-armv6`
-        2.  Assuming config location is `/home/pi/config.json`
+    2.  Make it run every night: 
+        ```
+        0 0 * * * /home/pi/pi-read-meter-armv6 config.json >> /home/pi/pi-read-meter.log 2>&1
+        ```
+        1.  Assuming the binary is at `/home/pi/pi-read-meter-armv6`
+        2.  Assuming the config is at `/home/pi/config.json`
         3.  Assuming that logs will be created to `/home/pi/pi-read-meter.log`
-        4.  Feel free to change however you like better
+        4.  Feel free to change it however you like better
 13. Now enjoy the pictures coming to Dropbox!
 
 I plan to add OCR at some point as well, so that Pi would be able to send the data "Pi" itself! :heart_eyes:
