@@ -10,14 +10,14 @@ Perfect use of Go in my opinion! I really enjoy building binary on my Mac, trans
 
 Here I'll go over the steps to set something similar up to yourself. These are notes for future self and for anyone who is interested in it.
 
-Basic equipment:
+**Basic equipment**
 * (Gas/water/electricity) meter to read
 * Raspberry Pi with memory card and connection to internet
 * Raspberry Pi camera or some other camera. It must be possible to capture image using command line command.
 * In case of dark room, some low consumption night light or similar might be necessary
 * Other computer (can be done on Pi as well) to build Go binaries on (this code right here)
 
-Setting it up from scratch:
+**Setting it up from scratch**
 1. Get Raspbian (Lite is fine) running in your Pi: https://www.raspberrypi.org/downloads/raspbian/
 2. Boot up the Pi and make sure to have access to the command line.
 3. Check your Pi ARM version: `cat /proc/cpuinfo`
