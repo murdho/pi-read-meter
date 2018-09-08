@@ -2,7 +2,11 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
+	"os/exec"
+	"path"
+	"time"
 
 	"github.com/pkg/errors"
 )
@@ -44,4 +48,34 @@ func LoadConfig(configFilename string) (*Config, error) {
 	}
 
 	return config, nil
+}
+
+// IShellExec executes a shell command.
+type IShellExec interface {
+	Exec(commandAndArgs string) error
+}
+
+// ShellExec is a shell command executer.
+type ShellExec struct{}
+
+// Exec runs a shell command.
+func (*ShellExec) Exec(commandAndArgs string) error {
+	cmd := exec.Command(commandAndArgs)
+	if err := cmd.Run(); err != nil {
+		return errors.Wrap(err, "executing shell command failed")
+	}
+
+	return nil
+}
+
+// CaptureImage captures image by executing a shell command and returns a path to the image.
+func CaptureImage(shellExec IShellExec, config *Config) (string, error) {
+	timestamp := time.Now().Format("2006-01-02-15-04-05")
+	filename := fmt.Sprintf(config.FilenamePattern, timestamp)
+	imagePath := path.Join(config.ImageDir, filename)
+	command := fmt.Sprintf(config.CaptureCommandPattern, imagePath)
+
+	shellExec.Exec(command)
+
+	return imagePath, nil
 }
