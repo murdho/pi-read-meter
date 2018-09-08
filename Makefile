@@ -12,5 +12,5 @@ run: build
 
 clean:
 	@rm -rf tmp
-	@rm ./pi-read-meter
-	@rm ./pi-read-meter-armv6
+	@rm -f ./pi-read-meter
+	@rm -f ./pi-read-meter-armv6

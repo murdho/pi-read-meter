@@ -47,3 +47,5 @@ I plan to add OCR at some point as well, so that Pi would be able to send the da
 # Contributing
 
 Contributions are welcome!
+
+If you are using it locally (in development), then use `config.dev.json` file for specifing the config.
