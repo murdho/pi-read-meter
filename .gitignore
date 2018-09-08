@@ -5,6 +5,7 @@
 *.so
 *.dylib
 pi-read-meter
+pi-read-meter-armv6
 
 # Test binary, build with `go test -c`
 *.test
