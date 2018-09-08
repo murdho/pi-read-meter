@@ -27,19 +27,19 @@ Setting it up from scratch:
 7. When you have the binary, move it to Pi (using `scp` or some other means)
 8. Move also the `config.example.json` from this repository to Pi
 9. Modify `config.example.json` to have correct information
-  1.  `capture_command` for Pi camera is `raspistill`. If you use something else, make sure to change it in the config file.
-  2.  `capture_command_args` are passed in to the command. Modify these according to your needs. `%s` in this list of args denotes the file name where the image is saved.
-  3.  `file_path` is a full path to the captured image. `%s` here is replaced with date and time.
-  4.  `dropbox_token` can be acquired from https://www.dropbox.com/developers/apps/create. Create an app with access to only its directory, this is where the images will be.
+    1.  `capture_command` for Pi camera is `raspistill`. If you use something else, make sure to change it in the config file.
+    2.  `capture_command_args` are passed in to the command. Modify these according to your needs. `%s` in this list of args denotes the file name where the image is saved.
+    3.  `file_path` is a full path to the captured image. `%s` here is replaced with date and time.
+    4.  `dropbox_token` can be acquired from https://www.dropbox.com/developers/apps/create. Create an app with access to only its directory, this is where the images will be.
 10. Run the binary on Pi: `./pi-read-meter-armv6 config.json` (I hope you named your config `config.json`)
 11. If all goes well, you should have the image in your Dropbox's app folder (`/Apps/APP_NAME` in Dropbox)
 12. To make it run automatically, configure cron using `crontab -e` command. In there,
-  1.  Specify cron shell, I used bash like this: `SHELL=/bin/bash`
-  2.  Make it run every night: `0 0 * * * /home/pi/pi-read-meter-armv6 config.json >> /home/pi/pi-read-meter.log 2>&1`
-    1.  Assuming binary location is `/home/pi/pi-read-meter-armv6`
-    2.  Assuming config location is `/home/pi/config.json`
-    3.  Assuming that logs will be created to `/home/pi/pi-read-meter.log`
-    4.  Feel free to change however you like better
+    1.  Specify cron shell, I used bash like this: `SHELL=/bin/bash`
+    2.  Make it run every night: `0 0 * * * /home/pi/pi-read-meter-armv6 config.json >> /home/pi/pi-read-meter.log 2>&1`
+        1.  Assuming binary location is `/home/pi/pi-read-meter-armv6`
+        2.  Assuming config location is `/home/pi/config.json`
+        3.  Assuming that logs will be created to `/home/pi/pi-read-meter.log`
+        4.  Feel free to change however you like better
 13. Now enjoy the pictures coming to Dropbox!
 
 I plan to add OCR at some point as well, so that Pi would be able to send the data "Pi" itself! :heart_eyes:
