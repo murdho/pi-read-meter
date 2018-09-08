@@ -1,6 +1,6 @@
 {
   "capture_command": "raspistill",
   "capture_command_args": "-vf -hf -o %s",
-  "file_path": "~/pi-read-meter/image_%s.jpg",
+  "file_path": "/home/pi/pi-read-meter/image_%s.jpg",
   "dropbox_token": "fcaea99c-67fa-4a56-9d08-6e133fd05759"
 }

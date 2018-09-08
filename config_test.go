@@ -11,7 +11,7 @@ const (
 var testConfig = Config{
 	CaptureCommand:     "raspistill",
 	CaptureCommandArgs: "-vf -hf -o %s",
-	FilePath:           "~/pi-read-meter/image_%s.jpg",
+	FilePath:           "/home/pi/pi-read-meter/image_%s.jpg",
 	DropboxToken:       "fcaea99c-67fa-4a56-9d08-6e133fd05759",
 }
 
