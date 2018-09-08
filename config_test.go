@@ -1,7 +1,6 @@
 package main
 
 import (
-	"regexp"
 	"testing"
 )
 
@@ -15,8 +14,6 @@ var testConfig = Config{
 	FilePath:           "~/pi-read-meter/image_%s.jpg",
 	DropboxToken:       "fcaea99c-67fa-4a56-9d08-6e133fd05759",
 }
-
-var filenameRegex = regexp.MustCompile(`image_\d{4}-(\d{2}-){4}\d{2}.jpg`)
 
 func TestLoadConfig(t *testing.T) {
 	config, err := LoadConfig(testConfigFile)

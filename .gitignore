@@ -14,3 +14,4 @@ pi-read-meter
 
 # Custom stuff
 config.dev.json
+tmp/

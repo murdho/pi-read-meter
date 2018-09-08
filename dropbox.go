@@ -1,31 +1,39 @@
 package main
 
 import (
-	"fmt"
+	"io"
+	"os"
+	"path/filepath"
 
-	"github.com/tj/go-dropbox"
+	"github.com/pkg/errors"
 )
 
-// IDropboxUploader is an interface for a Dropbox file uploader.
-type IDropboxUploader interface {
-	Upload(localPath string) error
+// NewDropboxUploader initializes a DropboxUploader.
+func NewDropboxUploader(uploadFunc UploadFunc) *DropboxUploader {
+	return &DropboxUploader{
+		uploadFunc: uploadFunc,
+	}
 }
 
-// DropboxUploader is an IDropboxUploader implementation.
+// DropboxUploader uploads a local file to Dropbox using custom uploading function.
 type DropboxUploader struct {
-	filesClient *dropbox.Files
+	uploadFunc func(name string, contents io.Reader) error
 }
 
-// Upload uploads a local file to app directory in Dropbox.
+// Upload uploads file from local path to Dropbox using specified function.
 func (du *DropboxUploader) Upload(localPath string) error {
-	// TODO
-	fmt.Printf("\033[1;33m%#v\033[0m\n", "Upload is not implemented yet")
+	file, err := os.Open(localPath)
+	if err != nil {
+		return errors.Wrap(err, "opening file for uploading failed")
+	}
+
+	filename := filepath.Base(localPath)
+	if err := du.uploadFunc(filename, file); err != nil {
+		return errors.Wrap(err, "uploading the file failed")
+	}
+
 	return nil
 }
 
-// NewDropboxUploader initializes a new DropboxUploader.
-func NewDropboxUploader(token string) IDropboxUploader {
-	return &DropboxUploader{
-		filesClient: dropbox.NewFiles(dropbox.NewConfig(token)),
-	}
-}
+// UploadFunc is used to specify uploading logic in DropboxUploader.
+type UploadFunc func(name string, contents io.Reader) error

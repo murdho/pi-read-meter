@@ -7,6 +7,14 @@ import (
 	"github.com/pkg/errors"
 )
 
+// NewCamera initializes a camera ready to take pixxxxx.
+func NewCamera(captureCommand, captureArgs string) ICamera {
+	return &Camera{
+		captureCommand: captureCommand,
+		captureArgs:    captureArgs,
+	}
+}
+
 // ICamera is an interface for an image capturing tool.
 type ICamera interface {
 	Capture(filePath string) error
@@ -26,12 +34,4 @@ func (c *Camera) Capture(filePath string) error {
 	}
 
 	return nil
-}
-
-// NewCamera initializes a camera ready to take pixxxxx.
-func NewCamera(captureCommand, captureArgs string) ICamera {
-	return &Camera{
-		captureCommand: captureCommand,
-		captureArgs:    captureArgs,
-	}
 }
